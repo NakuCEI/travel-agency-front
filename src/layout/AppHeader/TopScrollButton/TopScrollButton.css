@@ -1,0 +1,38 @@
+.top_button {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px rgb(0 0 0 / 5%);
+    background-color: rgba(0,0,0,0.75);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+    cursor: default;
+}
+
+.top_button::before {
+    content: '';
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    transform: rotate(-45deg);
+    font-size: 1.5rem;
+    border-style: solid;
+    border-width: 0.2em 0.2em 0 0;
+    border-color: #FFFFFF;
+}
+
+.top_button_visible {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    cursor: pointer;
+}
