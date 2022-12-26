@@ -1,0 +1,22 @@
+.navicon-wrapper {
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navicon-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.navicon-icon img {
+    width: 100%;
+    max-width: 32px;
+    height: auto;
+}
