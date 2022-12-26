@@ -21,7 +21,7 @@ export const AppHeader = () => {
     return (
         <header 
             ref={headerRef} 
-            className="sticky-top bg-dark text-light px-3 py-2 text-center"
+            className="sticky-top bg-dark text-light text-center"
         >
             <div 
                 ref={headerContentRef} 
@@ -36,6 +36,9 @@ export const AppHeader = () => {
                     />
                     <p className="text-company mb-0">TravelAgency</p>
                 </div>
+            </div>
+            <div className="d-flex justify-content-start align-items-center lh-1 shadow">
+                <button className="w-100 btn btn-danger py-0 pb-1 rounded-0 lh-1">LOGIN</button>
             </div>
             <TopScrollButton visible={ topBtnVisible } />
         </header>

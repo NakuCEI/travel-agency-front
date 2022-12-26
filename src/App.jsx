@@ -1,4 +1,5 @@
 import { AppFooter, AppHeader, AppMain } from "./layout"
+import { HomePage } from "./pages"
 
 function App() {
 
@@ -6,30 +7,7 @@ function App() {
     <>
       <AppHeader />
       <AppMain>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
-        <h1>APP</h1>
+        <HomePage />
       </AppMain>
       <AppFooter />
     </>
