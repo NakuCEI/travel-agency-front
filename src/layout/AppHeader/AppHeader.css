@@ -1,0 +1,13 @@
+.icon-company {
+    width: 100%;
+    max-width: 30px;
+    height: auto;
+}
+
+.text-company {
+    position: relative;
+    width: min-content;
+    font-size: calc(1.25rem + 1.25vw);
+    font-weight: 300;
+    line-height: 1.25;
+}

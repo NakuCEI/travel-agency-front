@@ -1,10 +1,15 @@
+import { AppFooter, AppHeader, AppMain } from "./layout"
 
 function App() {
 
   return (
-    <div className="App">
-      APP
-    </div>
+    <>
+      <AppHeader />
+      <AppMain>
+        APP
+      </AppMain>
+      <AppFooter />
+    </>
   )
 }
 
