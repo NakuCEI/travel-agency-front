@@ -1,14 +1,15 @@
-import { getAllProducts } from '../helpers';
+import { getProductsByCategory } from '../helpers';
+import { TRAVELS } from '../constants';
 import { ProductItem } from '../components/Products';
 
-const HomePage = () => {
+const ProductsTravels = () => {
     
-    const products = getAllProducts();
+    const products = getProductsByCategory(TRAVELS);
 
     return (
         <div className="d-flex flex-column">
             <div className="d-flex mb-2">
-                <h1>Home</h1>
+                <h1>Travels</h1>
             </div>
             <section className='row'>
                 {
@@ -21,4 +22,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default ProductsTravels;

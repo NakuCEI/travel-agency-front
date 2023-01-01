@@ -1,4 +1,3 @@
-
 export const AppFooter = () => {
     return (
         <footer className="bg-dark text-light p-1 text-center mt-auto">

@@ -12,11 +12,15 @@
 
 .menu li a {
     text-decoration: none;
-    color: #999999;
+    color: var(--bs-white);
+}
+
+.menu li a:hover {
+    color: var(--bs-yellow);
 }
 
 .menu li .active-link, 
 .menu li .nav-link:focus, 
 .menu li .nav-link:hover {
-    color: orange;
+    color: var(--bs-yellow);
 }

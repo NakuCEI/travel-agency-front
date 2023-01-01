@@ -1,9 +1,9 @@
 import './NavIcon.css';
 
-export const NavIcon = ({alt, title, src, iconClick}) => {
+export const NavIcon = ({alt, title, src, iconClick = null}) => {
 
     return (
-        <div className="navicon-wrapper" onClick={iconClick}>
+        <div className="navicon-wrapper" onClick={iconClick ? () => iconClick() : null}>
             <div className="navicon-icon">
                 <img alt={alt} title={title ? title : alt} src={src} />
             </div>

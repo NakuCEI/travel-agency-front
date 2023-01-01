@@ -1,5 +1,6 @@
-import { AppFooter, AppHeader, AppMain } from "./layout"
-import { HomePage } from "./pages"
+import { AppModal } from './components/AppModal/AppModal';
+import { AppFooter, AppHeader, AppMain } from './layout';
+import { AppRouter } from './router/AppRouter';
 
 function App() {
 
@@ -7,11 +8,16 @@ function App() {
     <>
       <AppHeader />
       <AppMain>
-        <HomePage />
+        <AppRouter />
       </AppMain>
       <AppFooter />
+      <AppModal>
+        <div>
+          CONTENIDO MODAL
+        </div>
+      </AppModal>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

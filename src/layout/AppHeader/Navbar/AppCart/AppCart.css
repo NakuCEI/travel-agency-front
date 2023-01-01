@@ -1,4 +1,24 @@
 .cart-wrapper {
     position: relative;
-    background-color: #212529;
+    background-color: transparent;
+}
+
+.cart-wrapper a {
+    text-decoration: none;
+    color: var(--bs-white);
+}
+
+.cart-wrapper a span .navicon-wrapper:hover .navicon-icon, 
+.cart-wrapper .active-link span .navicon-wrapper .navicon-icon, 
+.cart-wrapper .nav-link:focus span .navicon-wrapper .navicon-icon, 
+.cart-wrapper .nav-link:hover span .navicon-wrapper .navicon-icon {
+    background-color: var(--bs-yellow);
+    border-color: var(--bs-yellow);
+}
+ 
+.cart-wrapper .active-link span .navicon-wrapper .navicon-icon, 
+.cart-wrapper .nav-link:focus span .navicon-wrapper .navicon-icon, 
+.cart-wrapper .nav-link:hover span .navicon-wrapper .navicon-icon {
+    background-color: var(--bs-yellow);
+    border-color: var(--bs-yellow);
 }

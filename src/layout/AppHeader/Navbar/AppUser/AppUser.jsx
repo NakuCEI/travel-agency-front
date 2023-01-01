@@ -17,10 +17,10 @@ export const AppUser = ({ user, handleLogout }) => {
         setIsOpen(false);
     };
     
-    useClickOutside([wrapperElementRef], clickOutsidehandler);
+    useClickOutside([wrapperElementRef], clickOutsidehandler, isOpen);
 
     return (
-        <div ref={wrapperElementRef} className="user-wrapper ms-3">
+        <div ref={wrapperElementRef} className={`user-wrapper ms-3 ${ isOpen ? 'user-link-active' : ''}`}>
             <NavIcon 
                 alt="User" 
                 src="/src/assets/img/user.svg" 
