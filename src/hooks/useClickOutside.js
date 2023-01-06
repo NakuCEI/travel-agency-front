@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const mousedownEvent = 'mousedown';
 
-const useClickOutside = (refs, handler, isActive) => {
+export const useClickOutside = (refs, handler, isActive) => {
 
     useEffect(() => {
 
@@ -39,5 +39,3 @@ const useClickOutside = (refs, handler, isActive) => {
 
     }, [isActive]);
 };
-
-export default useClickOutside;

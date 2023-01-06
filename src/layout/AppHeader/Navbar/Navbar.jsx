@@ -1,23 +1,36 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useAuthStore, useUiStore } from '../../../store/hooks';
+import { AUTH_AUTHORIZED } from '../../../store/constants';
 import { AppCart } from './AppCart/AppCart';
 import { AppUser } from './AppUser/AppUser';
 import { 
+    ROUTE_CART,
     ROUTE_HOME, 
     ROUTE_TOURS, 
     ROUTE_TRAVELS 
 } from '../../../router/constants';
 import './Navbar.css';
 
-export const Navbar = ({ isLogged, handleUserLogin }) => {
+export const Navbar = () => {
 
-    const userTest = {
-        user: {
-            name: 'Test'
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+    const {user, status, startLogout} = useAuthStore();
+    const {openModal} = useUiStore();
+
+    const checkUrl = () => {
+        if (ROUTE_CART === pathname) {
+            navigate(-1);
         }
-    }
+    };
+
+    const handleUserLogin = () => {
+        openModal();
+    };
 
     const handleLogout = () => {
-        console.log('handleLogout');
+        startLogout();
+        checkUrl();
     };
 
     const checkActiveClass = ({isActive}) => {
@@ -34,13 +47,13 @@ export const Navbar = ({ isLogged, handleUserLogin }) => {
                 </ul>
             </div>
             {
-                isLogged ? 
+                (status === AUTH_AUTHORIZED) ? 
                     (
                         <>          
                             <div className="vr mx-3"></div>
                             <div className="d-flex">
                                 <AppCart />
-                                <AppUser user={userTest} handleLogout={handleLogout} />
+                                {user ? <AppUser user={user} handleLogout={handleLogout} /> : null}
                             </div>
                         </>
                     ) : (

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useUiStore } from '../../hooks/useUiStore';
-import useScrollPosition from '../../hooks/useScrollPosition';
+import { useAuthStore } from '../../store/hooks';
+import { useScrollPosition } from '../../hooks';
+import { AUTH_AUTHORIZED } from '../../store/constants';
 import { Navbar } from './Navbar/Navbar';
 import { TopScrollButton } from './TopScrollButton/TopScrollButton';
 import { HeaderLogo } from './HeaderLogo/HeaderLogo';
@@ -8,18 +9,19 @@ import './AppHeader.css';
 
 export const AppHeader = () => {
     
-    const {openModal} = useUiStore();
+    //const {openModal} = useUiStore();
     const [topBtnVisible, setTopBtnVisible] = useState(false);
-    const [isLogged, setIsLogged] = useState(false);
+    //const [isLogged, setIsLogged] = useState(false);
+    const {status} = useAuthStore();
     const headerRef = useRef();
     const headerContentRef = useRef();
     const scrollPosition = useScrollPosition();
 
-    const handleUserLogin = () => {
+    /* const handleUserLogin = () => {
         console.log('handleUserLogin');
-        setIsLogged(!isLogged);
+        //setIsLogged(!isLogged);
         openModal();
-    };
+    }; */
 
     const checkTopButtonStatus = () => {
         (scrollPosition > headerRef.current.offsetHeight) ? setTopBtnVisible(true) : setTopBtnVisible(false);
@@ -36,10 +38,10 @@ export const AppHeader = () => {
         >
             <div 
                 ref={headerContentRef} 
-                className={`container d-flex flex-column flex-sm-row justify-content-${isLogged ? 'between' : 'evenly'} align-items-center`}
+                className={`container d-flex flex-column flex-sm-row justify-content-${(status === AUTH_AUTHORIZED) ? 'between' : 'evenly'} align-items-center`}
             >
                 <HeaderLogo />
-                <Navbar isLogged={isLogged} handleUserLogin={handleUserLogin} />
+                <Navbar />
             </div>
             <TopScrollButton visible={ topBtnVisible } />
         </header>

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import useClickOutside from '../../../../hooks/useClickOutside';
+import { useClickOutside } from '../../../../hooks';
 import { NavIcon } from '../NavIcon/NavIcon';
 import './AppUser.css';
 

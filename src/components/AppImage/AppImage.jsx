@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-const Spinner = React.lazy(() => import('../Spinner/Spinner'));
+import Spinner from '../Spinner/Spinner';
 
 const AppImage = ({ ...props }) => {
 

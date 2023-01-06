@@ -1,7 +1,7 @@
-const Spinner = () => {
+const Spinner = ({ light = false }) => {
     return (
-        <div className="w-100 h-100 d-flex justify-content-center my-2">
-            <span className="spinner-border spinner-border-sm"></span>
+        <div className="w-100 h-100 d-flex justify-content-center align-items-center my-2">
+            <span className={`spinner-border ${light ? 'text-light' : ''}`}></span>
         </div>
     );
 };

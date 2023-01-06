@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const scrollEvent = 'scroll';
 
-const useScrollPosition = () => {
+export const useScrollPosition = () => {
 
     const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -20,5 +20,3 @@ const useScrollPosition = () => {
 
     return scrollPosition;
 };
-
-export default useScrollPosition;

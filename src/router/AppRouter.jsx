@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { useAuthStore } from '../store/hooks';
 
 import { 
     ROUTE_ROOT, 
@@ -10,24 +11,28 @@ import {
     ROUTE_CART 
 } from './constants';
 
-const HomePage = React.lazy(() => import('../pages/HomePage'));
-const ProductsTours = React.lazy(() => import('../pages/ProductsTours'));
-const ProductsTravels = React.lazy(() => import('../pages/ProductsTravels'));
-const ProductDetail = React.lazy(() => import('../pages/ProductDetail'));
-const CartPage = React.lazy(() => import('../pages/CartPage'));
-const Spinner = React.lazy(() => import('../components/Spinner/Spinner'));
+import HomePage from '../pages/HomePage';
+import ProductsTours from '../pages/ProductsTours';
+import ProductsTravels from '../pages/ProductsTravels';
+import ProductDetail from '../pages/ProductDetail';
+import CartPage from '../pages/CartPage';
 
 export const AppRouter = () => {
+
+    const { checkToken } = useAuthStore();
+
+    useEffect(() => {
+        checkToken();
+    }, []);
+
     return (
-        <Suspense fallback={<Spinner />}>
-            <Routes>
-                <Route path={ROUTE_HOME} element={<HomePage />} />
-                <Route path={ROUTE_TOURS} element={<ProductsTours />} />
-                <Route path={ROUTE_TRAVELS} element={<ProductsTravels />} />
-                <Route path={ROUTE_DETAIL_PRODUCT} element={<ProductDetail />} />
-                <Route path={ROUTE_CART} element={<CartPage />} />
-                <Route path={ROUTE_ROOT} element={<Navigate to={ROUTE_HOME} />} />
-            </Routes>
-        </Suspense>
+        <Routes>
+            <Route path={ROUTE_HOME} element={<HomePage />} />
+            <Route path={ROUTE_TOURS} element={<ProductsTours />} />
+            <Route path={ROUTE_TRAVELS} element={<ProductsTravels />} />
+            <Route path={ROUTE_DETAIL_PRODUCT} element={<ProductDetail />} />
+            <Route path={ROUTE_CART} element={<CartPage />} />
+            <Route path={ROUTE_ROOT} element={<Navigate to={ROUTE_HOME} />} />
+        </Routes>
     );
 };
