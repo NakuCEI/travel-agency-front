@@ -12,26 +12,21 @@ export const authSlice = createSlice({
     initialState: authInitialState,
     reducers: {
         onChecking: (state) => {
-            console.log(' - authSlice - onChecking - ');
             state.status = AUTH_CHECKING;
             state.user = {};
             state.errorMessage = undefined;
         },
         onLogin: (state, { payload }) => {
-            console.log(' - authSlice - onLogin - ');
-            console.log('payload: ', payload);
             state.status = AUTH_AUTHORIZED;
             state.user = payload;
             state.errorMessage = undefined;
         },
         onLogout: (state, { payload }) => {
-            console.log(' - authSlice - onLogout - ');
             state.status = AUTH_NOT_AUTHORIZED;
             state.user = {};
             state.errorMessage = payload;
         },
         onClearErrorMessage: (state) => {
-            console.log(' - authSlice - onClearErrorMessage - ');
             state.errorMessage = undefined;
         }
     }

@@ -10,15 +10,12 @@ export const useAuthStore = () => {
     const dispatch = useDispatch();
 
     const startLogin = async ({ email, password }) => {
-        console.log(email, password);
 
         dispatch(onChecking());
-        console.log(' ---------- START LOGIN ---------- ');
 
         try {
 
             const { data } = await agencyApi.post('/auth', { email, password });
-            console.log('data: ', data);
 
             localStorage.setItem(tokenKey, data.token);
 
@@ -26,59 +23,64 @@ export const useAuthStore = () => {
                 name: data.user.name, 
                 uid: data.user.uid
             };
-            console.log('usuario: ', usuario);
             
             dispatch(onLogin(usuario));
             
         } catch (error) {
             console.log('error: ', error);
-            console.log('error.response: ', error.response);
-            dispatch(onLogout('Nombre o usuario incorrectos.'));
-            setTimeout(() => {
+            let messageError = null;
+            if (error.response?.data?.msg) {
+                messageError = error.response.data.msg;
+            } else if (error.response?.data?.errors?.email?.msg) {
+                messageError = error.response.data.errors.email.msg;
+            }
+            dispatch(onLogout(messageError));
+            /* setTimeout(() => {
                 dispatch(onClearErrorMessage());
-            }, 3000);
+            }, 3000); */
         }
     };
 
     const startRegister = async ({ name, email, password }) => {
-        console.log(name, email, password);
         dispatch(onChecking());
-        console.log(' ---------- START REGISTER ---------- ');
 
         try {
             
             const { data } = await agencyApi.post('/auth/new', { name, email, password });
-            console.log('data: ', data);
-
+            
             localStorage.setItem(tokenKey, data.token);
 
             const usuario = {
                 name: data.user.name, 
                 uid: data.user.uid
             };
-            console.log('usuario: ', usuario);
             
             dispatch(onLogin(usuario));
             
         } catch (error) {
-            console.log('error.response: ', error.response);
-            dispatch(onLogout(error.response?.data.msg || error));
-            setTimeout(() => {
+            console.log('error: ', error);
+            let messageError = null;
+
+            if (error.response?.data?.msg) {
+                messageError = error.response.data.msg;
+            } else if (error.response?.data?.errors?.email?.msg) {
+                messageError = error.response.data.errors.email.msg;
+            }
+            dispatch(onLogout(messageError));
+            //dispatch(onLogout(error.response?.data.msg || error));
+            /* setTimeout(() => {
                 dispatch(onClearErrorMessage());
-            }, 3000);
+            }, 3000); */
         }
     };
 
     const startLogout = () => {
-        console.log('startLogout');
         localStorage.clear();
         dispatch(onLogout());
     };
 
     const checkToken = async () => {
-        console.log('checkToken');
         const token = localStorage.getItem(tokenKey);
-        console.log('token: ', token);
 
         if (!token) {
             return dispatch(onLogout());
@@ -87,14 +89,12 @@ export const useAuthStore = () => {
         try {
 
             const { data } = await agencyApi.get('/auth/renew');
-            console.log('data: ', data);
             localStorage.setItem(tokenKey, data.token);
 
             const usuario = {
                 name: data.user.name, 
                 uid: data.user.uid
             };
-            console.log('usuario: ', usuario);
             
             dispatch(onLogin(usuario));
             

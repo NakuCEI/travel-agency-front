@@ -9,7 +9,6 @@ export const AppUser = ({ user, handleLogout }) => {
     const wrapperElementRef = useRef(null);
 
     const handleUserClick = () => {
-        console.log('handleUserClick');
         setIsOpen(!isOpen);
     };
 

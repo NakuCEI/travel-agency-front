@@ -10,7 +10,6 @@ const agencyApi = axios.create({
 agencyApi.interceptors.request.use(config => {
 
     const tokenValue = localStorage.getItem('token');
-    console.log('tokenValue: ', tokenValue);
 
     config.headers = {
         ...config.headers, 
