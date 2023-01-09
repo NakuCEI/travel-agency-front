@@ -9,19 +9,11 @@ import './AppHeader.css';
 
 export const AppHeader = () => {
     
-    //const {openModal} = useUiStore();
     const [topBtnVisible, setTopBtnVisible] = useState(false);
-    //const [isLogged, setIsLogged] = useState(false);
     const {status} = useAuthStore();
     const headerRef = useRef();
     const headerContentRef = useRef();
     const scrollPosition = useScrollPosition();
-
-    /* const handleUserLogin = () => {
-        console.log('handleUserLogin');
-        //setIsLogged(!isLogged);
-        openModal();
-    }; */
 
     const checkTopButtonStatus = () => {
         (scrollPosition > headerRef.current.offsetHeight) ? setTopBtnVisible(true) : setTopBtnVisible(false);

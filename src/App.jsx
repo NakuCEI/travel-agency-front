@@ -1,5 +1,5 @@
 import { AppModal } from './components/AppModal/AppModal';
-import { LoginForm } from './components/LoginForm/LoginForm';
+import { AppForms } from './components/AppForms/AppForms';
 import { AppFooter, AppHeader, AppMain } from './layout';
 import { AppRouter } from './router/AppRouter';
 
@@ -13,7 +13,7 @@ function App() {
       </AppMain>
       <AppFooter />
       <AppModal>
-        <LoginForm />
+        <AppForms />
       </AppModal>
     </>
   );

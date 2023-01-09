@@ -1,15 +1,21 @@
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTE_CART } from '../../../../router/constants';
+import { useCartStore } from '../../../../store/hooks';
 import { NavIcon } from '../NavIcon/NavIcon';
 import './AppCart.css';
 
 export const AppCart = () => {
+    
+    const { cart, startGettingStoreCart } = useCartStore();
 
     const checkActiveClass = ({isActive}) => {
         return isActive ? 'active-link' : '';
     };
-
-    const cart = [1, 2, 3]
+    
+    useEffect(() => {
+        startGettingStoreCart();
+    }, []);
 
     return (
         <div className="cart-wrapper">
