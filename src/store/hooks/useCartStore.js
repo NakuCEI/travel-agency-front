@@ -16,7 +16,7 @@ export const useCartStore = () => {
         try { 
             if (cartItem._id) {
                 // actualizar
-                await agencyApi.put(`/cart/${cartItem._id}`, cartItem);
+                await agencyApi.put(`${CART_URL}${cartItem._id}`, cartItem);
                 dispatch(updateItemCart({
                     ...cartItem, 
                     user

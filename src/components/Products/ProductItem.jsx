@@ -15,11 +15,13 @@ export const ProductItem = ({ id, name, description, price, url }) => {
                 <div className="card-body h-100 d-flex flex-column justify-content-between">
                     <div>
                         <h5 className="card-title">{name}</h5>
-                        <p className="card-text">{description}</p>
+                        <p className="card-text truncate-line-clamp">
+                            {description}
+                        </p>
                         <p className="card-text"><b>Precio: </b>{price} €</p>
                     </div>
                     <div className="d-grid">
-                        <Link to={`${ROUTE_DETAIL_LINK}/${id}`} className='btn btn-dark btn-sm'>Más info</Link>
+                        <Link to={`${ROUTE_DETAIL_LINK}/${id}`} className='btn btn-dark btn-sm'>Ver más</Link>
                     </div>
                 </div>
             </div>
