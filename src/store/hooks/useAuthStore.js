@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { agencyApi } from '../../api';
 import { onChecking, onLogin, onClearErrorMessage, onLogout } from '../auth';
+import { 
+    getTokenLocalStorage, 
+    removeTokenLocalStorage, 
+    setTokenLocalStorage 
+} from '../../helpers/manageLocalStorage';
 
-const tokenKey = 'token';
+const AUTH_URL = '/auth';
 
 export const useAuthStore = () => {
 
@@ -15,9 +20,8 @@ export const useAuthStore = () => {
 
         try {
 
-            const { data } = await agencyApi.post('/auth', { email, password });
-
-            localStorage.setItem(tokenKey, data.token);
+            const { data } = await agencyApi.post(AUTH_URL, { email, password });
+            setTokenLocalStorage(data.token);
 
             const usuario = {
                 name: data.user.name, 
@@ -46,9 +50,8 @@ export const useAuthStore = () => {
 
         try {
             
-            const { data } = await agencyApi.post('/auth/new', { name, email, password });
-            
-            localStorage.setItem(tokenKey, data.token);
+            const { data } = await agencyApi.post(`${AUTH_URL}/new`, { name, email, password });
+            setTokenLocalStorage(data.token);
 
             const usuario = {
                 name: data.user.name, 
@@ -75,12 +78,13 @@ export const useAuthStore = () => {
     };
 
     const startLogout = () => {
-        localStorage.clear();
+        removeTokenLocalStorage();
         dispatch(onLogout());
     };
 
     const checkToken = async () => {
-        const token = localStorage.getItem(tokenKey);
+        
+        const token = getTokenLocalStorage();
 
         if (!token) {
             return dispatch(onLogout());
@@ -88,8 +92,8 @@ export const useAuthStore = () => {
 
         try {
 
-            const { data } = await agencyApi.get('/auth/renew');
-            localStorage.setItem(tokenKey, data.token);
+            const { data } = await agencyApi.get(`${AUTH_URL}/renew`);
+            setTokenLocalStorage(data.token);
 
             const usuario = {
                 name: data.user.name, 

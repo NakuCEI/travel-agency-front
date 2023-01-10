@@ -4,44 +4,35 @@ import { CartItem } from '../components/Products';
 
 const CartPage = () => {
     
-    const { cart, startGettingStoreCart, startSavingItem, startDeleteCartItem, getTotalAmount } = useCartStore();
+    const { cart, getUserCart, saveCartItem, deleteCartItem, getTotalAmount, getPurchaseAvailable } = useCartStore();
     const [totalAmount, setTotalAmount] = useState(0);
+    const [purchaseAvailable, setpurchaseAvailable] = useState(false);
 
     const confirmPurchase = () => {
         console.log('confirmPurchase');
     };
 
-    const updateProduct = (newProduct) => {
-        console.log('newProduct: ', newProduct);
-        startSavingItem(newProduct);
+    const updateProduct = async (newProduct) => {
+        await saveCartItem(newProduct);
+        getUserCart();
     };
 
     const removeProduct = (id) => {
-        startDeleteCartItem(id);
-    };
-
-    const getCartotalAmount = (arr) => {
-        const total = arr.reduce((total, item) => total + item.amount, 0);
-        console.log(' ====== total: ', total);
-        return total;
+        deleteCartItem(id);
     };
 
     const updateView = () => {
-        console.log(' ---> cart: ', cart);
-        console.log(' ---> totalAmount: ', totalAmount);
-        console.log(' ---> TOTAL: ', (cart !== null && cart && cart.length > 0) && getCartotalAmount(cart));
-        (cart !== null && cart && cart.length > 0) && setTotalAmount(getTotalAmount());
+        (cart && cart.length > 0) && setpurchaseAvailable(getPurchaseAvailable());
+        (cart && cart.length > 0) && setTotalAmount(getTotalAmount());
     };
     
     useEffect(() => {
         updateView();
-    }, [cart, totalAmount, setTotalAmount]);
+    }, [cart]);
     
     useEffect(() => {
-        startGettingStoreCart();
+        getUserCart();
     }, []);
-    
-    console.log('totalAmount: ', totalAmount);
 
     return (
         <div className="d-flex flex-column">
@@ -56,11 +47,19 @@ const CartPage = () => {
                                 <>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="d-flex justify-content-start align-items-center">
-                                            <p className="mb-0 text-secondary h5"><span className="text-dark">{cart.length}</span> {`product${cart.length === 1 ? '' : 's'}`}</p>
+                                            <p className="mb-0 text-secondary h5">
+                                                <span className="text-dark">{cart.length}</span> {`product${cart.length === 1 ? '' : 's'}`}
+                                            </p>
                                             <div className="vr mx-2"></div>
-                                            <p className="mb-0 text-secondary h5">Total: <span className="text-dark">{totalAmount} €</span></p>
+                                            <p className="mb-0 text-secondary h5">
+                                                Total: <span className="text-dark">{totalAmount} €</span>
+                                            </p>
                                         </div>
-                                        <button onClick={() => confirmPurchase()} className="btn btn-primary">Confirm</button>
+                                        <button 
+                                            className="btn btn-primary" 
+                                            disabled={!purchaseAvailable} 
+                                            onClick={() => confirmPurchase()} 
+                                        >Confirm</button>
                                     </div>
                                     <p className="mt-2 text-secondary">Before confirming the purchase, be sure to fill in the dates.</p>
                                 </>
@@ -78,7 +77,7 @@ const CartPage = () => {
                                             key={item._id} 
                                             product={item} 
                                             removeItem={removeProduct} 
-                                            setItemTotalPrice={updateProduct} 
+                                            updateProduct={updateProduct} 
                                         />
                                     ))
                                 )

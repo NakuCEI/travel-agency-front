@@ -1,32 +1,34 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthStore, useCartStore } from '../store/hooks';
 import { getProductById } from '../helpers';
 import { ProductCard } from '../components/Products';
-import { useAuthStore, useCartStore } from '../store/hooks';
 
 const ProductDetail = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
     const product = getProductById(id) || null;
-    const { startSavingItem } = useCartStore();
+    const { saveCartItem } = useCartStore();
     const { user } = useAuthStore();
 
     const handleGoBack = () => {
         navigate(-1);
     };
 
-    const handleAddToCart = () => {
-        console.log('handleAddToCart');
-        console.log('product: ', product);
-        console.log('user: ', user);
-        const newCartItem = {
+    const getProductItem = () => {
+        const todaysDate = new Date().toISOString().slice(0, -8);
+        return {
             reservation: product.id, 
             amount: product.price, 
-            start: 1, 
-            end: 1, 
+            start: todaysDate, 
+            end: todaysDate, 
             user: user.uid 
         };
-        startSavingItem(newCartItem);
+    };
+
+    const handleAddToCart = () => {
+        const newCartItem = getProductItem();
+        saveCartItem(newCartItem);
     };
 
     return (

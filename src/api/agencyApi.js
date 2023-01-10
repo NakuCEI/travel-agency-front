@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getEnvs } from '../helpers';
+import { getEnvs, getTokenLocalStorage } from '../helpers';
 
 const { VITE_API_URL } = getEnvs();
 
@@ -9,7 +9,7 @@ const agencyApi = axios.create({
 
 agencyApi.interceptors.request.use(config => {
 
-    const tokenValue = localStorage.getItem('token');
+    const tokenValue = getTokenLocalStorage();
 
     config.headers = {
         ...config.headers, 

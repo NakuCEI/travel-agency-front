@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCartLocalStorage } from '../../helpers/manageLocalStorage';
 
 const cartInitialState = {
-    cart: getCartLocalStorage()
+    cart: null
 };
 
 export const cartSlice = createSlice({
@@ -12,9 +11,6 @@ export const cartSlice = createSlice({
         getCart: (state, {payload}) => {
             state.cart = payload;
         }, 
-        removeCart: (state) => {
-            state.cart = null;
-        },
         addToCart: (state, {payload}) => {
             state.cart = [...state.cart, payload];
         }, 
@@ -35,8 +31,7 @@ export const cartSlice = createSlice({
 });
 
 export const { 
-    getCart, 
-    removeCart, 
+    getCart,  
     addToCart, 
     removeItemCart, 
     updateItemCart 

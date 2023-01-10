@@ -1,26 +1,28 @@
-import React from 'react';
-
-const AppFormInputDateTime = ({ dateId, dateLabel, dateValue, onChangeDate }) => {
+const AppFormInputDateTime = ({ dateName, dateLabel, dateValue, onChangeDate, error }) => {
 
     const convertDate = (paramDate) => {
         return new Date(paramDate).toISOString().slice(0, -8);
     };
 
-    const checkDate = ({target}) => {
-        const objDate = {
-            dateid: dateId, 
-            date: target.value 
+    const getDateObject = (value) => {
+        return {
+            dateName: dateName, 
+            date: value 
         };
+    };
+
+    const checkDate = ({target}) => {
+        const objDate = getDateObject(target.value);
         onChangeDate(objDate);
     };
 
     return (
         <div className="w-100 d-flex flex-sm-column flex-md-row justify-content-between align-items-start mx-1 mt-1">
-            <label htmlFor={dateId} className="me-1">{dateLabel}: </label>
+            <span className={`me-1 ${error ? 'text-danger' : ''}`}>{dateLabel}: </span>
             <input 
                 type="datetime-local" 
-                id={dateId} 
-                className="form-control p-0 w-auto" 
+                name={dateName} 
+                className={`form-control px-1 py-0 w-auto ${error ? 'border border-danger text-danger' : ''}`} 
                 min={new Date().toISOString().slice(0, -8)} 
                 defaultValue={convertDate(dateValue)} 
                 onChange={checkDate} 

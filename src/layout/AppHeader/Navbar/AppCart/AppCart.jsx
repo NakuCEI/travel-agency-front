@@ -7,14 +7,14 @@ import './AppCart.css';
 
 export const AppCart = () => {
     
-    const { cart, startGettingStoreCart } = useCartStore();
+    const { cart, getUserCart } = useCartStore();
 
     const checkActiveClass = ({isActive}) => {
         return isActive ? 'active-link' : '';
     };
     
     useEffect(() => {
-        startGettingStoreCart();
+        getUserCart();
     }, []);
 
     return (
