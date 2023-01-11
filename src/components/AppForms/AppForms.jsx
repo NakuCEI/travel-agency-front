@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { AUTH_AUTHORIZED, AUTH_CHECKING } from "../../store/constants";
-import { useAuthStore, useUiStore } from "../../store/hooks";
-import AppErrorMessage from "../AppErrorMessage/AppErrorMessage";
-import Spinner from "../Spinner/Spinner";
-import { AppFormLogin } from "./AppFormLogin";
-import { AppFormRegister } from "./AppFormRegister";
+import { useEffect, useState } from 'react';
+import { AUTH_AUTHORIZED, AUTH_CHECKING } from '../../store/constants';
+import { useAuthStore, useUiStore } from '../../store/hooks';
+import AppErrorMessage from '../AppErrorMessage/AppErrorMessage';
+import Spinner from '../Spinner/Spinner';
+import { AppFormLogin } from './AppFormLogin';
+import { AppFormRegister } from './AppFormRegister';
 
 export const AppForms = () => {
     

@@ -3,6 +3,9 @@ import { useAuthStore, useCartStore } from '../store/hooks';
 import { getProductById } from '../helpers';
 import { ProductCard } from '../components/Products';
 
+const productNotFound = 'Producto no encontrado';
+const goBack = 'Volver atrás';
+
 const ProductDetail = () => {
 
     const navigate = useNavigate();
@@ -37,7 +40,7 @@ const ProductDetail = () => {
                 {
                     (product) ? 
                         (<h1 className="w-100 mb-4 text-left text-capitalize border-bottom border-secondary">{product.name}</h1>)
-                        : (<h2 className="w-100 mb-4 text-center text-danger">Product Not Found</h2>)
+                        : (<h2 className="w-100 mb-4 text-center text-danger">{productNotFound}</h2>)
                 }
             </div>
             <div className="row">
@@ -52,7 +55,7 @@ const ProductDetail = () => {
                         )
                         : (
                             <div className="d-flex justify-content-center">
-                                <button onClick={() => handleGoBack()} className='btn btn-secondary btn-sm'>Go back</button>
+                                <button onClick={() => handleGoBack()} className='btn btn-secondary btn-sm'>{goBack}</button>
                             </div>
                         )
                 }

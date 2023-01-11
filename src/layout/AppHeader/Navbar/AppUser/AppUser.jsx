@@ -3,6 +3,8 @@ import { useClickOutside } from '../../../../hooks';
 import { NavIcon } from '../NavIcon/NavIcon';
 import './AppUser.css';
 
+const closeSessionText = 'Cerrar sesión';
+
 export const AppUser = ({ user, handleLogout }) => {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +35,10 @@ export const AppUser = ({ user, handleLogout }) => {
                     <div className="d-flex justify-content-center">
                         <hr />
                         <button 
-                            className="btn btn-dark btn-sm" 
+                            className="btn btn-dark btn-sm py-0" 
                             onClick={() => handleLogout()}
                         >
-                            Logout
+                            {closeSessionText}
                         </button>
                     </div>
                 </div>

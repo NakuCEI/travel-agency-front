@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { AUTH_AUTHORIZED } from "../../store/constants";
-import { useAuthStore } from "../../store/hooks";
-import AppImage from "../AppImage/AppImage";
+import { useEffect, useState } from 'react';
+import { AUTH_AUTHORIZED } from '../../store/constants';
+import { useAuthStore } from '../../store/hooks';
+import AppImage from '../AppImage/AppImage';
 
-const registerWarning = 'You must be registered before to purchase';
+const registerWarning = 'Debes estar registrado para poder comprar';
+const priceText = 'Precio';
+const addToCart = 'Añadir al carrito';
+const goBack = 'Volver atrás';
 
 export const ProductCard = ({ clickGoBack, clickAddToCart, ...props }) => {
 
@@ -37,18 +40,18 @@ export const ProductCard = ({ clickGoBack, clickAddToCart, ...props }) => {
                                 <p className="card-text custom-detail-paragraph">
                                     {description}
                                 </p>
-                                <p className="card-text"><b>Precio: </b>{price} €</p>
+                                <p className="card-text"><b>{priceText}: </b>{price} €</p>
                             </div>
                             <div className="d-flex flex-column">
                                 <div className="d-flex justify-content-between align-items-center mt-4">
-                                    <button onClick={() => clickGoBack()} className='btn btn-secondary btn-sm'>Go back</button>
+                                    <button onClick={() => clickGoBack()} className='btn btn-secondary btn-sm'>{goBack}</button>
                                     <button 
                                         className={`btn btn-primary btn-sm ${isAuthorized ? '' : 'opacity-50'}`} 
                                         style={{ cursor: `${(isAuthorized) ? '' : 'default'}`}}
                                         disabled={!isAuthorized}
                                         onClick={() => clickAddToCart()} 
                                     >
-                                        Add to cart
+                                        {addToCart}
                                     </button>
                                 </div>
                                 {

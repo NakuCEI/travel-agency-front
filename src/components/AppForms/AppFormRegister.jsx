@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { onLogout } from "../../store/auth";
-import { useForm } from "../../hooks";
-import { useAuthStore } from "../../store/hooks";
-import AppFormInput from "../AppFormInput/AppFormInput";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { onLogout } from '../../store/auth';
+import { useForm } from '../../hooks';
+import { useAuthStore } from '../../store/hooks';
+import AppFormInput from '../AppFormInput/AppFormInput';
+
+const newUserText = '¿Usuario nuevo? Por favor regístrate.';
+const registerTitle = 'Registro';
+const registerButtonText = 'Registrar';
 
 const registerFormInputs = {
     registerName: '', 
@@ -43,13 +47,13 @@ export const AppFormRegister = () => {
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-start">
-            <p className="mb-1">New user? Please register.</p>
-            <h3 className="mb-2">Register</h3>
+            <p className="mb-1">{newUserText}</p>
+            <h3 className="mb-2">{registerTitle}</h3>
             <form onSubmit={checkRegisterSubmit} className="w-100">
                 <div className="w-100 mb-3 has-validation">
                 <AppFormInput 
                         name="registerName" 
-                        placeholder="Name" 
+                        placeholder="Nombre" 
                         value={registerName} 
                         onChange={onRegisterInputChange} 
                     />
@@ -61,13 +65,13 @@ export const AppFormRegister = () => {
                     />
                     <AppFormInput 
                         name="registerPassword" 
-                        placeholder="Password" 
+                        placeholder="Contraseña" 
                         value={registerPassword} 
                         onChange={onRegisterInputChange} 
                     />
                     <AppFormInput 
                         name="registerPassword2" 
-                        placeholder="Repeat password" 
+                        placeholder="Repetir contraseña" 
                         value={registerPassword2} 
                         onChange={onRegisterInputChange} 
                     />
@@ -77,7 +81,7 @@ export const AppFormRegister = () => {
                         type="submit" 
                         className="btn btn-dark py-1 px-3"
                         disabled={!isRegisterFormAvailable}
-                    >Registrar</button>
+                    >{registerButtonText}</button>
                 </div>
             </form>
         </div>

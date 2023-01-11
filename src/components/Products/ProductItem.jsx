@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-import { ROUTE_DETAIL_LINK } from "../../router/constants";
-import AppImage from "../AppImage/AppImage";
+import { Link } from 'react-router-dom';
+import { ROUTE_DETAIL_LINK } from '../../router/constants';
+import AppImage from '../AppImage/AppImage';
+
+const priceText = 'Precio';
+const seeMoreText = 'Ver más';
 
 export const ProductItem = ({ id, name, description, price, url }) => {
 
@@ -18,10 +21,10 @@ export const ProductItem = ({ id, name, description, price, url }) => {
                         <p className="card-text truncate-line-clamp">
                             {description}
                         </p>
-                        <p className="card-text"><b>Precio: </b>{price} €</p>
+                        <p className="card-text"><b>{priceText}: </b>{price} €</p>
                     </div>
                     <div className="d-grid">
-                        <Link to={`${ROUTE_DETAIL_LINK}/${id}`} className='btn btn-dark btn-sm'>Ver más</Link>
+                        <Link to={`${ROUTE_DETAIL_LINK}/${id}`} className='btn btn-dark btn-sm'>{seeMoreText}</Link>
                     </div>
                 </div>
             </div>

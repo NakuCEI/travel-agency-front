@@ -8,6 +8,7 @@ import {
 } from '../../helpers/manageLocalStorage';
 
 const AUTH_URL = '/auth';
+const timeOutMiliseconds = 3000;
 
 export const useAuthStore = () => {
 
@@ -31,17 +32,7 @@ export const useAuthStore = () => {
             dispatch(onLogin(usuario));
             
         } catch (error) {
-            console.log('error: ', error);
-            let messageError = null;
-            if (error.response?.data?.msg) {
-                messageError = error.response.data.msg;
-            } else if (error.response?.data?.errors?.email?.msg) {
-                messageError = error.response.data.errors.email.msg;
-            }
-            dispatch(onLogout(messageError));
-            /* setTimeout(() => {
-                dispatch(onClearErrorMessage());
-            }, 3000); */
+            dispatchError(error);
         }
     };
 
@@ -61,19 +52,7 @@ export const useAuthStore = () => {
             dispatch(onLogin(usuario));
             
         } catch (error) {
-            console.log('error: ', error);
-            let messageError = null;
-
-            if (error.response?.data?.msg) {
-                messageError = error.response.data.msg;
-            } else if (error.response?.data?.errors?.email?.msg) {
-                messageError = error.response.data.errors.email.msg;
-            }
-            dispatch(onLogout(messageError));
-            //dispatch(onLogout(error.response?.data.msg || error));
-            /* setTimeout(() => {
-                dispatch(onClearErrorMessage());
-            }, 3000); */
+            dispatchError(error);
         }
     };
 
@@ -106,6 +85,27 @@ export const useAuthStore = () => {
             console.log('error: ', error);
             dispatch(onLogout());
         }
+    };
+
+    const dispatchError = (error) => {
+    
+        console.log('error: ', error);
+
+        let messageError = null;
+
+        if (error.response?.data?.errors?.email?.msg) {
+            messageError = error.response.data.errors.email.msg;
+        } else if (error.response?.data?.msg) {
+            messageError = error.response.data.msg;
+        } else if (error.message) {
+            messageError = error.message;
+        };
+    
+        dispatch(onLogout(messageError));
+    
+        setTimeout(() => {
+            dispatch(onClearErrorMessage());
+        }, timeOutMiliseconds);
     };
 
     return {

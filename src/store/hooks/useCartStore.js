@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { agencyApi } from '../../api';
-import { compareDates } from '../../helpers';
 import { getCart, addToCart, removeItemCart, updateItemCart } from '../cart';
+import { compareDates } from '../../helpers';
 
 const CART_URL = '/cart/';
 

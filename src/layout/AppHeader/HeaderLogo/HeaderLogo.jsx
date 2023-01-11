@@ -1,5 +1,5 @@
-import { ROUTE_HOME } from '../../../router/constants';
 import { Link } from 'react-router-dom';
+import { ROUTE_HOME } from '../../../router/constants';
 import './HeaderLogo.css';
 
 export const HeaderLogo = () => {

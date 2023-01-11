@@ -1,14 +1,14 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore, useUiStore } from '../../../store/hooks';
 import { AUTH_AUTHORIZED } from '../../../store/constants';
-import { AppCart } from './AppCart/AppCart';
-import { AppUser } from './AppUser/AppUser';
 import { 
     ROUTE_CART,
     ROUTE_HOME, 
     ROUTE_TOURS, 
     ROUTE_TRAVELS 
 } from '../../../router/constants';
+import { AppCart } from './AppCart/AppCart';
+import { AppUser } from './AppUser/AppUser';
 import './Navbar.css';
 
 export const Navbar = () => {
@@ -43,7 +43,7 @@ export const Navbar = () => {
                 <ul className='menu'>
                     <li><NavLink className={(args) => checkActiveClass(args)} to={ROUTE_HOME}>Home</NavLink></li>
                     <li><NavLink className={(args) => checkActiveClass(args)} to={ROUTE_TOURS}>Tours</NavLink></li>
-                    <li><NavLink className={(args) => checkActiveClass(args)} to={ROUTE_TRAVELS}>Travels</NavLink></li>
+                    <li><NavLink className={(args) => checkActiveClass(args)} to={ROUTE_TRAVELS}>Viajes</NavLink></li>
                 </ul>
             </div>
             {

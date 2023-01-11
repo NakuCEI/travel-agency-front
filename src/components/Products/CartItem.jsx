@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { getProductById } from "../../helpers";
-import AppFieldButtons from "../AppFieldButtons/AppFieldButtons";
-import AppFormInputDateTime from "../AppFormInputDateTime/AppFormInputDateTime";
+import { useEffect, useState } from 'react';
+import { getProductById } from '../../helpers';
+import AppFieldButtons from '../AppFieldButtons/AppFieldButtons';
+import AppFormInputDateTime from '../AppFormInputDateTime/AppFormInputDateTime';
 
+const deleteText = 'Borrar';
 const startDateName = 'startDate';
 const endDateName = 'endDate';
 
@@ -71,14 +72,14 @@ export const CartItem = ({ product, removeItem, updateProduct }) => {
                             <AppFormInputDateTime 
                                 dateName={startDateName} 
                                 dateValue={startDateSelected} 
-                                dateLabel="Departure" 
+                                dateLabel="Salida" 
                                 onChangeDate={checkDate} 
                                 error={!validDateStart} 
                             />
                             <AppFormInputDateTime 
                                 dateName={endDateName} 
                                 dateValue={endDateSelected} 
-                                dateLabel="Arrival" 
+                                dateLabel="Llegada" 
                                 onChangeDate={checkDate} 
                                 error={!validDateEnd} 
                             />
@@ -93,7 +94,7 @@ export const CartItem = ({ product, removeItem, updateProduct }) => {
                             <h5 className="mb-0">{quantity * price} €</h5>
                         </div>
                         <div className="text-end">
-                            <button onClick={() => removeItem(product._id)} className="btn btn-danger btn-sm">Delete</button>
+                            <button onClick={() => removeItem(product._id)} className="btn btn-danger btn-sm">{deleteText}</button>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { KEY_TOKEN } from "../constants";
+import { KEY_TOKEN } from '../constants';
 
 export const getTokenLocalStorage = () => {
     return localStorage.getItem(KEY_TOKEN);

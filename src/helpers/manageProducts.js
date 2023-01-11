@@ -1,7 +1,7 @@
 import { products } from '../data/dataProducts';
 import { TOURS, TRAVELS } from '../constants';
 
-const errorCategoryNotExists = 'The category does not exist';
+const errorCategoryNotExists = 'La categoría no existe';
 
 export const getAllProducts = () => {
     return products;

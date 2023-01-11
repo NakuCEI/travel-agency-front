@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
-import { useForm } from "../../hooks";
-import { useAuthStore } from "../../store/hooks";
-import AppFormInput from "../AppFormInput/AppFormInput";
+import { useEffect, useState } from 'react';
+import { useForm } from '../../hooks';
+import { useAuthStore } from '../../store/hooks';
+import AppFormInput from '../AppFormInput/AppFormInput';
+
+const yetUserText = '¿Ya eres suario? Por favor loguéate.';
+const loginTitle = 'Login';
+const loginButtonText = 'Login';
 
 const loginFormInputs = {
     loginEmail: '', 
@@ -33,8 +37,8 @@ export const AppFormLogin = () => {
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-start">
-            <p className="mb-1">Already user? Please login.</p>
-            <h3 className="mb-2">Login</h3>
+            <p className="mb-1">{yetUserText}</p>
+            <h3 className="mb-2">{loginTitle}</h3>
             <form onSubmit={checkLoginSubmit} className="w-100 mb-4">
                 <div className="w-100 mb-3">
                     <AppFormInput  
@@ -45,7 +49,7 @@ export const AppFormLogin = () => {
                     />
                     <AppFormInput  
                         name="loginPassword" 
-                        placeholder="Password" 
+                        placeholder="Contraseña" 
                         value={loginPassword}  
                         onChange={onLoginInputChange} 
                     />
@@ -55,7 +59,7 @@ export const AppFormLogin = () => {
                         type="submit" 
                         className="btn btn-dark py-1 px-3" 
                         disabled={!isLoginFormAvailable}
-                    >Login</button>
+                    >{loginButtonText}</button>
                 </div>
             </form>
         </div>

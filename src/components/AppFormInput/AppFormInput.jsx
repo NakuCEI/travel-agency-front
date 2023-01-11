@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AppFormInput = ({ type='text', ...props }) => {
 
     return (
