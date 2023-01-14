@@ -4,10 +4,16 @@ import { onLogout } from '../../store/auth';
 import { useForm } from '../../hooks';
 import { useAuthStore } from '../../store/hooks';
 import AppFormInput from '../AppFormInput/AppFormInput';
+import { 
+    MAX_PASSWORD_LENGTH, 
+    MIN_FORM_VALUE_LENGTH, 
+    MIN_PASSWORD_LENGTH 
+} from '../../constants';
 
 const newUserText = '¿Usuario nuevo? Por favor regístrate.';
 const registerTitle = 'Registro';
 const registerButtonText = 'Registrar';
+const errorPasswordsNotEqual = 'Las contraseñas introducidas no coinciden';
 
 const registerFormInputs = {
     registerName: '', 
@@ -25,7 +31,7 @@ export const AppFormRegister = () => {
     const checkRegisterSubmit = (ev) => {
         ev.preventDefault();
         if (registerPassword !== registerPassword2) {
-            dispatch(onLogout('Passwords are not the same'));
+            dispatch(onLogout(errorPasswordsNotEqual));
         }
         if (isRegisterFormAvailable && registerPassword === registerPassword2) {
             startRegister({name: registerName, email: registerEmail, password: registerPassword});
@@ -41,9 +47,24 @@ export const AppFormRegister = () => {
     } = useForm(registerFormInputs);
 
     useEffect(() => {
-        setisRegisterFormAvailable((registerName.length > 3 && registerEmail.length > 3 && (registerPassword.length > 5 && registerPassword.length < 11) && (registerPassword2.length > 5 && registerPassword2.length < 11)));
-    }, [registerName, registerEmail, registerPassword, registerPassword2, isRegisterFormAvailable]);
-
+        setisRegisterFormAvailable((
+            registerName.length >= MIN_FORM_VALUE_LENGTH && 
+            registerEmail.length >= MIN_FORM_VALUE_LENGTH && 
+            (
+                registerPassword.length >= MIN_PASSWORD_LENGTH && 
+                registerPassword.length <= MAX_PASSWORD_LENGTH
+            ) && (
+                registerPassword2.length >= MIN_PASSWORD_LENGTH && 
+                registerPassword2.length <= MAX_PASSWORD_LENGTH
+            )
+            ));
+    }, [
+        registerName, 
+        registerEmail, 
+        registerPassword, 
+        registerPassword2, 
+        isRegisterFormAvailable
+    ]);
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-start">
@@ -64,12 +85,14 @@ export const AppFormRegister = () => {
                         onChange={onRegisterInputChange} 
                     />
                     <AppFormInput 
+                        type="password" 
                         name="registerPassword" 
                         placeholder="Contraseña" 
                         value={registerPassword} 
                         onChange={onRegisterInputChange} 
                     />
                     <AppFormInput 
+                        type="password" 
                         name="registerPassword2" 
                         placeholder="Repetir contraseña" 
                         value={registerPassword2} 

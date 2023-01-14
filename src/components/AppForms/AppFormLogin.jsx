@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react';
 import { useForm } from '../../hooks';
 import { useAuthStore } from '../../store/hooks';
 import AppFormInput from '../AppFormInput/AppFormInput';
+import { 
+    MAX_PASSWORD_LENGTH, 
+    MIN_FORM_VALUE_LENGTH, 
+    MIN_PASSWORD_LENGTH 
+} from '../../constants';
 
-const yetUserText = '¿Ya eres suario? Por favor loguéate.';
+const yetUserText = '¿Ya eres usuario? Por favor loguéate.';
 const loginTitle = 'Login';
 const loginButtonText = 'Login';
 
@@ -31,10 +36,19 @@ export const AppFormLogin = () => {
     } = useForm(loginFormInputs);
 
     useEffect(() => {
-        setisLoginFormAvailable((loginEmail.length > 3 && (loginPassword.length > 5 && loginPassword.length < 11)));
-    }, [loginEmail, loginPassword, isLoginFormAvailable]);
+        setisLoginFormAvailable((
+            loginEmail.length >= MIN_FORM_VALUE_LENGTH && 
+            (
+                loginPassword.length >= MIN_PASSWORD_LENGTH && 
+                loginPassword.length <= MAX_PASSWORD_LENGTH
+            )
+        ));
+    }, [
+        loginEmail, 
+        loginPassword, 
+        isLoginFormAvailable
+    ]);
     
-
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-start">
             <p className="mb-1">{yetUserText}</p>
@@ -47,7 +61,8 @@ export const AppFormLogin = () => {
                         value={loginEmail} 
                         onChange={onLoginInputChange} 
                     />
-                    <AppFormInput  
+                    <AppFormInput 
+                        type="password" 
                         name="loginPassword" 
                         placeholder="Contraseña" 
                         value={loginPassword}  

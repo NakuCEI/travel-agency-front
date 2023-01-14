@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useForm = (initialForm = {}, onSubmit) => {
+export const useForm = (initialForm = {}) => {
 
     const [formState, setFormState] = useState(initialForm);
 
@@ -16,20 +16,8 @@ export const useForm = (initialForm = {}, onSubmit) => {
         });
     };
 
-    const onResetForm = () => {
-        setFormState(initialForm);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit?.(formState);
-    };
-
     return {
         ...formState,
-        formState,
-        onInputChange,
-        onResetForm, 
-        handleSubmit
+        onInputChange 
     };
 };

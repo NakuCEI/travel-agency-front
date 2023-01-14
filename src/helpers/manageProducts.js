@@ -23,7 +23,7 @@ export const getProductsByCategory = (category) => {
 };
 
 export const compareDates = (item) => {
-    const startDate = new Date(item.start);
-    const endDate = new Date(item.end);
-    return (endDate >= startDate) ? true : false;
+    const startDate = new Date(item.start).getTime();
+    const endDate = new Date(item.end).getTime();
+    return (endDate !== startDate && endDate >= startDate) ? true : false;
 };
