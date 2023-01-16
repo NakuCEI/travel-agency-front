@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { agencyApi } from '../../api';
-import { getCart, addToCart, removeItemCart, updateItemCart } from '../cart';
+import { getCart, addToCart, removeItemCart, updateItemCart, emptyCart } from '../cart';
 import { compareDates } from '../../helpers';
 
 const CART_URL = '/cart/';
@@ -56,6 +56,17 @@ export const useCartStore = () => {
         }
     };
 
+    const setEmptyCart = async () => {
+        
+        try {
+            await agencyApi.delete(`${CART_URL}/delete/${user.uid}`);
+            dispatch(emptyCart());
+            
+        } catch (error) {
+            console.log('Error: ', error.message);
+        }
+    };
+
     const getTotalAmount = () => {
         return cart.reduce((total, item) => total + item.amount, 0);
     };
@@ -77,6 +88,7 @@ export const useCartStore = () => {
         saveCartItem, 
         deleteCartItem, 
         getUserCart, 
+        setEmptyCart, 
         getPurchaseAvailable 
     };
 };

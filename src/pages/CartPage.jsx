@@ -10,12 +10,20 @@ const noProductsInCart = 'No hay productos en el carrito de compra.';
 
 const CartPage = () => {
     
-    const { cart, getUserCart, saveCartItem, deleteCartItem, getTotalAmount, getPurchaseAvailable } = useCartStore();
+    const { 
+        cart, 
+        getUserCart, 
+        saveCartItem, 
+        deleteCartItem, 
+        getTotalAmount, 
+        getPurchaseAvailable, 
+        setEmptyCart 
+    } = useCartStore();
     const [totalAmount, setTotalAmount] = useState(0);
     const [purchaseAvailable, setpurchaseAvailable] = useState(false);
 
     const confirmPurchase = () => {
-        console.log('confirmPurchase');
+        setEmptyCart();
     };
 
     const updateProduct = async (newProduct) => {
