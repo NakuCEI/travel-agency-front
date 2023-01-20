@@ -5,6 +5,8 @@ import { useCartStore } from '../../../../store/hooks';
 import { NavIcon } from '../NavIcon/NavIcon';
 import './AppCart.css';
 
+const shoppingCartImage = '../../../../assets/img/shopping-cart.svg';
+
 export const AppCart = () => {
     
     const { cart, getUserCart } = useCartStore();
@@ -23,7 +25,7 @@ export const AppCart = () => {
                 <span>
                     <NavIcon 
                         alt="Cart" 
-                        src="/src/assets/img/shopping-cart.svg" 
+                        src={shoppingCartImage} 
                     />
                     {
                         (cart && cart.length) ? 

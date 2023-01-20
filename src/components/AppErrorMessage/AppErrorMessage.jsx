@@ -1,5 +1,7 @@
 import React from 'react';
 
+const warningExclamationTriangleImage = '../../assets/img/warning-exclamation-triangle.svg';
+
 const AppErrorMessage = ({ message }) => {
 
     return (
@@ -9,7 +11,7 @@ const AppErrorMessage = ({ message }) => {
                     <img 
                         alt="Error icon" 
                         title="Error icon" 
-                        src="/src/assets/img/warning-exclamation-triangle.svg" 
+                        src={warningExclamationTriangleImage} 
                         width="24" 
                         height="24" 
                         style={{ filter: "invert(40%) sepia(100%) saturate(400%) hue-rotate(-50deg) brightness(55%) contrast(2)" }}

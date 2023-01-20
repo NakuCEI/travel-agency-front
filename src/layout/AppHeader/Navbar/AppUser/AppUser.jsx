@@ -3,6 +3,7 @@ import { useClickOutside } from '../../../../hooks';
 import { NavIcon } from '../NavIcon/NavIcon';
 import './AppUser.css';
 
+const userImage = '../../../../assets/img/user.svg';
 const closeSessionText = 'Cerrar sesión';
 
 export const AppUser = ({ user, handleLogout }) => {
@@ -24,7 +25,7 @@ export const AppUser = ({ user, handleLogout }) => {
         <div ref={wrapperElementRef} className={`user-wrapper ms-3 ${ isOpen ? 'user-link-active' : ''}`}>
             <NavIcon 
                 alt="User" 
-                src="/src/assets/img/user.svg" 
+                src={userImage} 
                 iconClick={() => handleUserClick()} 
             />
             <div className={`user-info shadow rounded bg-light border border-secondary ${isOpen ? 'd-flex' : 'd-none'}`}>
