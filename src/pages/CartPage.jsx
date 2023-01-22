@@ -53,14 +53,14 @@ const CartPage = () => {
             <div className="d-flex mb-2">
                 <h1>{myProducts}</h1>
             </div>
-            <div className="mx-auto" style={{ maxWidth: "800px" }}>
+            <div className="container mx-auto" style={{ maxWidth: "800px" }}>
                 <div className="d-flex flex-column mb-2">
                     {
                         (cart !== null && cart && cart.length > 0) ? 
                             (
                                 <>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <div className="d-flex justify-content-start align-items-center">
+                                    <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                                        <div className="d-flex justify-content-between justify-content-sm-start align-items-center">
                                             <p className="mb-0 text-secondary h5">
                                                 <span className="text-dark">{cart.length}</span> {`${productSingular}${cart.length === 1 ? '' : 's'}`}
                                             </p>
@@ -70,7 +70,7 @@ const CartPage = () => {
                                             </p>
                                         </div>
                                         <button 
-                                            className="btn btn-primary" 
+                                            className="btn btn-primary mt-3 mt-sm-0 text-break" 
                                             disabled={!purchaseAvailable} 
                                             onClick={() => confirmPurchase()} 
                                         >{purchaseConfirmation}</button>
