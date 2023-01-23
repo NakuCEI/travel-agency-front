@@ -1,7 +1,10 @@
-import './TopScrollButton.css';
+import './TopScrollButton.css'; // Importación de estilos 
 
+// Componente TopScrollButton
+// Recibe un valor booleano 
 export const TopScrollButton = ({ visible }) => {
 
+    // Método para mover el scroll a la parte superior de la página
     const scrollToTop = (e) => {
         e.preventDefault();
         window.scrollTo({

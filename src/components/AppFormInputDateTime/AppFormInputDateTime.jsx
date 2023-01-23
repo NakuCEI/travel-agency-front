@@ -1,9 +1,13 @@
+// Componente AppFormInputDateTime
+// Recibe como parámetros el valor name del input, el label, su value, el evento onChange y el error
 const AppFormInputDateTime = ({ dateName, dateLabel, dateValue, onChangeDate, error }) => {
 
+    // Método para convertir la fecha recibida en formato ISO y pintarla en el input
     const convertDate = (paramDate) => {
         return new Date(paramDate).toISOString().slice(0, -8);
     };
 
+    // Método para generar el objeto fecha
     const getDateObject = (value) => {
         return {
             dateName: dateName, 
@@ -11,6 +15,7 @@ const AppFormInputDateTime = ({ dateName, dateLabel, dateValue, onChangeDate, er
         };
     };
 
+    // Método para enviar el valor del objeto fecha
     const checkDate = ({target}) => {
         const objDate = getDateObject(target.value);
         onChangeDate(objDate);

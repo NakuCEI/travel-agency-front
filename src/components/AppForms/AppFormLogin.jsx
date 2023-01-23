@@ -1,40 +1,50 @@
-import { useEffect, useState } from 'react';
-import { useForm } from '../../hooks';
-import { useAuthStore } from '../../store/hooks';
-import AppFormInput from '../AppFormInput/AppFormInput';
+import { useEffect, useState } from 'react'; // Importación de hooks de react
+import { useForm } from '../../hooks'; // Importación de hook del formulario
+import { useAuthStore } from '../../store/hooks'; // Importación de hook de gestión del usuario
+import AppFormInput from '../AppFormInput/AppFormInput'; // Importación de componente input del formulario
 import { 
     MAX_PASSWORD_LENGTH, 
     MIN_FORM_VALUE_LENGTH, 
     MIN_PASSWORD_LENGTH 
-} from '../../constants';
+} from '../../constants'; // Importación de constantes para los valores campos
 
+// Constantes para textos
 const yetUserText = '¿Ya eres usuario? Por favor loguéate.';
 const loginTitle = 'Login';
 const loginButtonText = 'Login';
 
+// Estado inicial del formulario
 const loginFormInputs = {
     loginEmail: '', 
     loginPassword: '' 
 };
 
+// Componente AppFormLogin
 export const AppFormLogin = () => {
 
+    // Método de login del hook de usuario
     const { startLogin } = useAuthStore();
+    // useState para almacenar la validez del valor del formulario
     const [ isLoginFormAvailable, setisLoginFormAvailable ] = useState(false);
 
+    // Método para comprobar la validez del formulario
     const checkLoginSubmit = (ev) => {
         ev.preventDefault();
+        // Si el formulario es válido se lanza el login en la API
         if (isLoginFormAvailable) {
             startLogin({email: loginEmail, password: loginPassword});
         }
     };
 
+    // Uso de valores del formulario para el hook
     const { 
         loginEmail, 
         loginPassword, 
         onInputChange: onLoginInputChange 
     } = useForm(loginFormInputs);
 
+    // useEffect para ejecutar con los cambios en los campos del formulario
+    // Establece la validez del formulario
     useEffect(() => {
         setisLoginFormAvailable((
             loginEmail.length >= MIN_FORM_VALUE_LENGTH && 

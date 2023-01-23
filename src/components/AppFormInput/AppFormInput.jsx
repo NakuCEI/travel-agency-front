@@ -1,3 +1,5 @@
+// Componente AppFormInput
+// Recibe como parámetros las props de un elemento input
 const AppFormInput = ({ ...props }) => {
 
     return (

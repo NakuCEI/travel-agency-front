@@ -1,11 +1,14 @@
-import { getProductsByCategory } from '../helpers';
-import { TRAVELS } from '../constants';
-import { ProductItem } from '../components/Products';
+import { getProductsByCategory } from '../helpers'; // Importación de método para buscar productos por categoría
+import { TRAVELS } from '../constants'; // Importación de constante de la categoría
+import { ProductItem } from '../components/Products'; // Importación de componente del card de cada producto
 
+// Componente ProductsTravels
 const ProductsTravels = () => {
     
+    // Constante para guardar los productos encontrados con la categoría
     const products = getProductsByCategory(TRAVELS);
 
+    // En un bucle se generan los productos
     return (
         <div className="d-flex flex-column">
             <div className="d-flex mb-2">

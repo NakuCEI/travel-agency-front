@@ -1,10 +1,14 @@
-import { useState } from 'react';
-import Spinner from '../Spinner/Spinner';
+import { useState } from 'react'; // Importación de hook de react
+import Spinner from '../Spinner/Spinner'; // Importación de componente Spinner
 
+// Componente AppImage
+// Recibe como parámetros las propiedades asignadas a una imagen
 const AppImage = ({ ...props }) => {
 
+    // useSatet para registrar cuando se ha cargado la imagen
     const [loading, setLoading] = useState(true);
 
+    // En un <div> se muestra el Spinner mientras se carga la imagen y una vez cargada se quita el Spinner
     return (
         <>
             <div 

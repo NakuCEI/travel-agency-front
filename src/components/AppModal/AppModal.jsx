@@ -1,17 +1,23 @@
-import { useRef } from 'react';
-import { useClickOutside } from '../../hooks';
-import { useUiStore } from '../../store/hooks';
-import './AppModal.css';
+import { useRef } from 'react'; // Importación de hook de react
+import { useClickOutside } from '../../hooks'; // Importación de hook de control de click fuera de elemento
+import { useUiStore } from '../../store/hooks'; // Importación de hook de control de estado de modal
+import './AppModal.css'; // Importación de estilos
 
+// Componente AppModal
+// Recibe como parámetro un componente para anidar
 export const AppModal = ({children}) => {
-
+    // Valores del hook de control de estado de modal
     const {isModalOpen, closeModal} = useUiStore();
+    // Referencia para el modal
     const modalElementRef = useRef(null);
 
+    // Método par acerrar el modal
     const handleCloseModal = () => {
         closeModal();
     };
     
+    // Uso del hook para detectar clicks fuera del modal
+    // Se pasa como parámetros la referencia del modal, el evento de cierre y la variable que controla la visibilidad
     useClickOutside([modalElementRef], handleCloseModal, isModalOpen);
 
     return (

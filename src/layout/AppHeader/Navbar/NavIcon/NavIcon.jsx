@@ -1,5 +1,7 @@
-import './NavIcon.css';
+import './NavIcon.css'; // Importación de estilos
 
+// Componente NavIcon
+// Renderiza un icono con las propiedades de la imagen y el evento click que se le indique
 export const NavIcon = ({alt, title, src, iconClick = null}) => {
 
     return (

@@ -1,24 +1,36 @@
-import { useEffect, useState } from 'react';
-import { getProductById } from '../../helpers';
-import AppFieldButtons from '../AppFieldButtons/AppFieldButtons';
-import AppFormInputDateTime from '../AppFormInputDateTime/AppFormInputDateTime';
+import { useEffect, useState } from 'react'; // Importación de hooks de react
+import { getProductById } from '../../helpers'; // Importación de método para buscar producto por id
+import AppFieldButtons from '../AppFieldButtons/AppFieldButtons'; // Importación de componente de cantidad de producto
+import AppFormInputDateTime from '../AppFormInputDateTime/AppFormInputDateTime'; // Importación de componente de fecha de producto
 
+// Constantes de textos
 const deleteText = 'Borrar';
 const startDateName = 'startDate';
 const endDateName = 'endDate';
 
+// Componente CartItem
+// Recibe como parámetro el producto del carrito de compra, el evento para eliminarlo y el evento para actualizarlo
 export const CartItem = ({ product, removeItem, updateProduct }) => {
 
+    // Desestructuración de valores del producto
     const { reservation, amount, start, end } = product;
+    // Constante para almacenar la información del producto
     const info = getProductById(reservation) || null;
+    // Desestructuración de valores de la información del producto
     const { id, name, price, url } = info;
-
+    // useSate para almacenar la cantidad del producto
     const [quantity, setQuantity] = useState(amount/price);
+    // useSate para guardar la fecha inicial del producto
     const [startDateSelected, setStartDateSelected] = useState(start);
+    // useSate para guardar la fecha final del producto
     const [endDateSelected, setEndDateSelected] = useState(end);
+    // useSate para guardar la validez de la fecha inicial del producto
     const [validDateStart, setValidDateStart] = useState(false);
+    // useSate para guardar la validez de la fecha final del producto
     const [validDateEnd, setValidDateEnd] = useState(false);
 
+    // Método para comprobar las cantidades del producto
+    // Actualiza el valor en base de datos
     const checkQuantity = (num) => {
         if (num > 0 && num <= 10) {
             const priceValue  = num * price;
@@ -29,6 +41,7 @@ export const CartItem = ({ product, removeItem, updateProduct }) => {
         }
     };
 
+    // Método para comparar la validez de las fechas
     const compareDates = (date, field) => {
         if (field === startDateName) {
             setValidDateStart(new Date(date) < new Date(endDateSelected));
@@ -37,6 +50,8 @@ export const CartItem = ({ product, removeItem, updateProduct }) => {
         }
     };
 
+    // Método para asignar las fechas del producto
+    // Actualiza el valor en base de datos
     const checkDate = (param) => {
         const newProduct = {...product};
         if (param.dateName === startDateName) {
@@ -50,11 +65,13 @@ export const CartItem = ({ product, removeItem, updateProduct }) => {
         updateProduct(newProduct);
     };
 
+    // Método para comparar la validez de las fechas
     const setDateValidation = () => {
         compareDates(startDateSelected, startDateName);
         compareDates(endDateSelected, endDateName);
     };
     
+    // useEffect a ejecutar cuando cambian los valores de fechas
     useEffect(() => {
         setDateValidation();
     }, [startDateSelected, endDateSelected]);

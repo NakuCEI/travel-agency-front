@@ -1,7 +1,9 @@
 import React from 'react';
-
+// Ruta de imagen
 const warningExclamationTriangleImage = '../../assets/img/warning-exclamation-triangle.svg';
 
+// Componente AppErrorMessage
+// Recibe como parámetro el texto del mensaje
 const AppErrorMessage = ({ message }) => {
 
     return (

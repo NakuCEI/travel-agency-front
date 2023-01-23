@@ -1,3 +1,5 @@
+// Componente AppFieldButtons
+// Recibe como parámetros la cantidad y el método para modificarla
 const AppFieldButtons = ({ quantity, checkQuantity }) => {
 
     return (
